@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="./img/PokeBola.png">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Pokemon</title>
 </head>
 
@@ -16,14 +16,18 @@
 </header>
     <main>
         <div class="container-title">
-            <h1 class="title-text">Lucario</h1>
-            <span class="title-transparent">Lucario</span>
+            <h1 id="tituloPrincipal" class="title-text">Lucario</h1>
+            <span id="nomeFundo" class="title-transparent">Lucario</span>
+        </div>
+
+        <div class="center-button">
+            <button id="botaoEvolve" class="evolve">Evolve</button>
         </div>
 
         <div class="container">
             <div>
-                <h2>Let's Go Lucario !</h2>
-                <p>Lucario is a dual-type Fighting/Steel Pokemon introduced in Generation IV</p>
+                <h2 id="textoEvolucao">Let's Go Lucario!</h2> 
+                <p id="descricaoPokemon">Lucario is a dual-type Fighting/Steel Pokemon introduced in Generation IV</p> 
             </div>
 
             <div class="action">
@@ -33,11 +37,53 @@
             </div>
         </div>
 
-        <img src="./img/Lucario.png" alt="Lucario" class="Lucario-image">
-
+        <img id="imagemLucario" src="./img/Lucario.png" alt="Lucario" class="Lucario-image">
     </main>
     <footer>
         <p>✌Guilherme Leite✌</p>
     </footer>
+
+    <script>
+        const imagem = document.getElementById("imagemLucario");
+        const botaoEvolve = document.getElementById("botaoEvolve");
+        const tituloPrincipal = document.getElementById("tituloPrincipal");
+        const nomeFundo = document.getElementById("nomeFundo");
+        const textoEvolucao = document.getElementById("textoEvolucao");
+        const descricaoPokemon = document.getElementById("descricaoPokemon");
+
+        const evolucoes = [
+            {
+                imagem: "./img/Lucario.png", 
+                nome: "Lucario", 
+                texto: "Let's Go Lucario!", 
+                descricao: "Lucario is a dual-type Fighting/Steel Pokemon introduced in Generation IV"
+            },
+            {
+                imagem: "./img/Riolu.png", 
+                nome: "Riolu", 
+                texto: "Let's Go Riolu!", 
+                descricao: "Riolu is a dual-type Fighting/Steel Pokemon introduced in Generation IV"
+            }
+        ];
+        
+        let indiceAtual = 0;
+
+        botaoEvolve.addEventListener("click", () => {
+
+            indiceAtual = (indiceAtual + 1) % evolucoes.length;
+            imagem.src = evolucoes[indiceAtual].imagem;
+            tituloPrincipal.textContent = evolucoes[indiceAtual].nome;
+            nomeFundo.textContent = evolucoes[indiceAtual].nome;
+            textoEvolucao.textContent = evolucoes[indiceAtual].texto;
+            descricaoPokemon.textContent = evolucoes[indiceAtual].descricao;
+
+            if (indiceAtual === 1) {
+                botaoEvolve.textContent = "Unevolved";
+            } else {
+                botaoEvolve.textContent = "Evolve";
+            }
+        });
+    </script>
+
 </body>
 </html>
